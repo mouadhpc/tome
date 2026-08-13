@@ -8,64 +8,226 @@
 <meta name="description" content="La vie belle — Tome 1 — Les Racines de l’espoir. Roman, version prête à publier.">
 <style>
 
-  :root {{ --ink: #222; --accent: #8a4b2a; --paper: #fffdf8; }}
-  * {{ box-sizing: border-box; }}
-  html {{ -webkit-font-smoothing: antialiased; }}
-  body {{
-    font-family: "DejaVu Serif", "Liberation Serif", Georgia, "Times New Roman", serif;
+  :root {
+    --ink: #2b2118;
+    --accent: #a35b24;
+    --gold: #b8862e;
+    --gold-soft: #d9b96a;
+    --green: #6f8a52;
+    --paper: #fdf7ea;
+    --line: #e3d3b0;
+    --font-body: "EB Garamond", "DejaVu Serif", Georgia, "Times New Roman", serif;
+    --font-display: "Vollkorn", "EB Garamond", "DejaVu Serif", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font-body);
     color: var(--ink);
     background: var(--paper);
     margin: 0 auto;
     max-width: 46rem;
     padding: 2rem 1.5rem;
     line-height: 1.7;
-    font-size: 1.05rem;
+    font-size: 1.06rem;
     text-align: justify;
     hyphens: auto;
-  }}
-  a {{ color: inherit; text-decoration: none; }}
+  }
+  a { color: inherit; text-decoration: none; }
 
-  .cover {{
+  .cover {
+    position: relative;
+    page: cover;
+    break-after: page;
+    overflow: hidden;
+  }
+  .cover-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-text { position: absolute; left: 0; right: 0; top: 12%; text-align: center; }
+  .cover-author {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: .38em;
+    font-size: .82rem;
+    color: #f3d9a4;
+    font-family: var(--font-display);
+  }
+  .cover-title {
+    margin: 1.1rem 0 0;
+    font-size: 3.4rem;
+    font-weight: 600;
+    color: #fff4dc;
+    font-family: var(--font-display);
+    letter-spacing: .03em;
+    text-shadow: 0 2px 24px rgba(26, 13, 5, .55);
+  }
+  .cover-subtitle {
+    margin: .4rem 0 0;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #ffdd94;
+    font-family: var(--font-display);
+    letter-spacing: .06em;
+  }
+  .cover-tagline {
+    position: absolute;
+    left: 0; right: 0; top: 58%;
     text-align: center;
-    min-height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 2.5rem;
-  }}
-  .cover .rule {{ border-top: 1px solid var(--accent); width: 6rem; margin: 1.5rem auto; }}
-  .cover h1 {{ font-size: 3rem; margin: 0; letter-spacing: .04em; }}
-  .cover .subtitle {{ font-size: 1.3rem; color: #555; font-style: italic; margin-top: .5rem; }}
-  .cover .author {{ margin-top: 2.5rem; font-size: 1.05rem; letter-spacing: .2em; text-transform: uppercase; }}
-  .cover-page {{ break-after: page; }}
+    margin: 0;
+    font-style: italic;
+    font-size: 1.02rem;
+    color: #fff0c9;
+    padding: 0 3rem;
+    text-shadow: 0 1px 14px rgba(26, 13, 5, .6);
+  }
+  .cover-tagline::before, .cover-tagline::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 2.6rem;
+    height: 1px;
+    background: rgba(255, 240, 201, .7);
+    margin: 0 .9rem;
+  }
+  @media print {
+    .cover { width: 210mm; height: 297mm; }
+  }
+  @media screen {
+    .cover { min-height: 100vh; }
+  }
 
-  .imprint {{ font-size: .85rem; color: #666; text-align: center; margin: 2.5rem 0; line-height: 1.8; }}
-  .imprint-page {{ break-after: page; }}
-  .toc {{ margin: 2rem 0 3rem; }}
-  .toc h2 {{ font-size: 1.4rem; text-align: center; border-bottom: 1px solid #ccc; padding-bottom: .5rem; }}
-  .toc ol {{ list-style: none; padding: 0; }}
-  .toc li {{ padding: .35rem 0; border-bottom: 1px dotted #ccc; text-align: right; }}
-  .toc li a {{ text-align: left; display: block; }}
-  .toc li a::after {{ content: " →"; color: var(--accent); }}
-
-  h1.chap-num {{
-    font-size: 1.15rem;
-    letter-spacing: .35em;
+  .imprint {
     text-align: center;
-    margin: 3.5rem 0 .4rem;
+    color: #5c4a36;
+    font-size: .92rem;
+    line-height: 2;
+    margin: 0;
+    padding: 2.2rem 1rem;
+  }
+  .imprint .ornament { color: var(--gold); font-size: 1.1rem; margin-bottom: 1.6rem; }
+  .imprint-page { break-after: page; }
+  .imprint-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
+  .imprint-rule { width: 4.5rem; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.1rem auto; }
+
+  .toc { margin: 0; padding: 1.5rem 1rem 3rem; }
+  .toc h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: .24em;
+    text-transform: uppercase;
     color: var(--accent);
-  }}
-  h2.chap-title {{ font-size: 1.5rem; text-align: center; margin: 0 0 1.8rem; font-weight: normal; }}
-  .separator {{ text-align: center; color: var(--accent); margin: 1.6rem 0; letter-spacing: .2em; }}
-  p {{ margin: 0 0 .7rem; }}
+    margin: 0 0 .4rem;
+  }
+  .toc h2::after {
+    content: "";
+    display: block;
+    width: 5rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: .9rem auto 1.6rem;
+  }
+  .toc ol { list-style: none; padding: 0; margin: 0; }
+  .toc li { border-bottom: 1px dotted var(--line); }
+  .toc li a { display: block; text-align: left; padding: .34rem .2rem; color: var(--ink); }
+  .toc li a:hover { color: var(--accent); }
+  .toc-num {
+    display: inline-block;
+    min-width: 2.2rem;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .chapter { padding: 0; }
+  h1.chap-num {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: .4em;
+    text-align: center;
+    margin: 3.4rem 0 .35rem;
+    color: var(--accent);
+    break-before: page;
+  }
+  .chapter h1.chap-num:first-child { break-before: auto; }
+  h1.chap-num::before {
+    content: "☀";
+    display: block;
+    font-size: .9rem;
+    color: var(--gold);
+    letter-spacing: 0;
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+  h2.chap-title {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  h2.chap-title::after {
+    content: "";
+    display: block;
+    width: 5rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: .85rem auto 2rem;
+  }
+  .separator {
+    text-align: center;
+    margin: 2.2rem 0;
+    color: var(--gold);
+    font-size: .85rem;
+    letter-spacing: .25em;
+  }
+  .separator::before, .separator::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 3rem;
+    height: 1px;
+    background: var(--line);
+    margin: 0 .7rem;
+  }
+  .chapter p { margin: 0 0 .72rem; }
+  .chapter p.first .dropcap {
+    font-family: var(--font-display);
+    font-size: 3.2em;
+    line-height: .8;
+    float: left;
+    padding: .04em .1em 0 0;
+    color: var(--accent);
+  }
 
   @page {
     size: A4;
     margin: 22mm 20mm 20mm;
-    @bottom-center { content: counter(page); font-size: 9pt; color: #888; font-family: "DejaVu Serif", serif; }
-    @top-center { content: "La vie belle — Tome 1 — Les Racines de l’espoir"; font-size: 8pt; color: #aaa; font-style: italic; }
+    @top-center {
+      content: "La vie belle — Tome 1 — Les Racines de l’espoir";
+      font-family: "Vollkorn", serif;
+      font-style: italic;
+      font-size: 8.5pt;
+      color: #a8792f;
+      letter-spacing: .06em;
+    }
+    @bottom-center {
+      content: counter(page);
+      font-family: "Vollkorn", serif;
+      font-size: 10pt;
+      color: #a8792f;
+    }
   }
+
   @page cover { @top-center { content: none; } @bottom-center { content: none; } margin: 0; }
   .cover { page: cover; }
 
@@ -74,17 +236,20 @@
 <body>
 
   
-  <section class="cover cover-page">
-    <p class="author">Mouadh P. Chibani</p>
-    <div class="rule"></div>
-    <h1>La vie belle</h1>
-    <p class="subtitle">Tome 1 — Les Racines de l’espoir</p>
-    <div class="rule"></div>
-    <p style="margin-top:2.5rem;font-style:italic;color:#777;">Un roman sur la lumière, même quand la vie semble l’avoir éteinte.</p>
+  <section class="cover">
+    <img class="cover-art" alt="" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20850%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%20role%3D%22img%22%20aria-label%3D%22Soleil%20levant%20sur%20un%20arbre%20aux%20racines%20profondes%22%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22ciel%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%233a2012%22/%3E%0A%3Cstop%20offset%3D%220.30%22%20stop-color%3D%22%237c4124%22/%3E%0A%3Cstop%20offset%3D%220.52%22%20stop-color%3D%22%23cf7c33%22/%3E%0A%3Cstop%20offset%3D%220.72%22%20stop-color%3D%22%23efb25f%22/%3E%0A%3Cstop%20offset%3D%220.88%22%20stop-color%3D%22%23fdeec0%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff6dc%22/%3E%0A%3C/linearGradient%3E%0A%3CradialGradient%20id%3D%22halo%22%20cx%3D%220.5%22%20cy%3D%220.5%22%20r%3D%220.5%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fff4c8%22%20stop-opacity%3D%220.95%22/%3E%0A%3Cstop%20offset%3D%220.45%22%20stop-color%3D%22%23ffdf8a%22%20stop-opacity%3D%220.55%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffd97a%22%20stop-opacity%3D%220%22/%3E%0A%3C/radialGradient%3E%0A%3ClinearGradient%20id%3D%22sol%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%235d3a20%22/%3E%0A%3Cstop%20offset%3D%220.12%22%20stop-color%3D%22%234a2d17%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23241103%22/%3E%0A%3C/linearGradient%3E%0A%3CradialGradient%20id%3D%22scrim%22%20cx%3D%220.5%22%20cy%3D%220.40%22%20r%3D%220.58%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23160a03%22%20stop-opacity%3D%220.42%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23160a03%22%20stop-opacity%3D%220%22/%3E%0A%3C/radialGradient%3E%0A%3C/defs%3E%0A%0A%3Crect%20width%3D%22600%22%20height%3D%22850%22%20fill%3D%22url%28%23ciel%29%22/%3E%0A%0A%3Ccircle%20cx%3D%22300%22%20cy%3D%22340%22%20r%3D%22185%22%20fill%3D%22url%28%23halo%29%22/%3E%0A%3Ccircle%20cx%3D%22300%22%20cy%3D%22340%22%20r%3D%22100%22%20fill%3D%22%23ffe9a4%22/%3E%0A%0A%3Cg%20stroke%3D%22%23ffdf8a%22%20stroke-width%3D%225%22%20opacity%3D%220.6%22%20stroke-linecap%3D%22round%22%3E%0A%3Cline%20x1%3D%22300%22%20y1%3D%22120%22%20x2%3D%22300%22%20y2%3D%2270%22/%3E%0A%3Cline%20x1%3D%22420%22%20y1%3D%22178%22%20x2%3D%22458%22%20y2%3D%22142%22/%3E%0A%3Cline%20x1%3D%22462%22%20y1%3D%22340%22%20x2%3D%22520%22%20y2%3D%22340%22/%3E%0A%3Cline%20x1%3D%22420%22%20y1%3D%22502%22%20x2%3D%22458%22%20y2%3D%22538%22/%3E%0A%3Cline%20x1%3D%22180%22%20y1%3D%22178%22%20x2%3D%22142%22%20y2%3D%22142%22/%3E%0A%3Cline%20x1%3D%22138%22%20y1%3D%22340%22%20x2%3D%2280%22%20y2%3D%22340%22/%3E%0A%3Cline%20x1%3D%22180%22%20y1%3D%22502%22%20x2%3D%22142%22%20y2%3D%22538%22/%3E%0A%3Cline%20x1%3D%22300%22%20y1%3D%22560%22%20x2%3D%22300%22%20y2%3D%22610%22/%3E%0A%3C/g%3E%0A%0A%3Cg%20stroke%3D%22%233a2012%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.6%22%3E%0A%3Cpath%20d%3D%22M150%20230%20q10%20-9%2020%200%20M168%20222%20q10%20-9%2020%200%22/%3E%0A%3Cpath%20d%3D%22M440%20260%20q10%20-9%2020%200%20M458%20252%20q10%20-9%2020%200%22/%3E%0A%3C/g%3E%0A%0A%3Cg%20stroke%3D%22%23ffe9a4%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%3E%0A%3Cpath%20d%3D%22M110%20140%20v10%20M105%20145%20h10%22/%3E%0A%3Cpath%20d%3D%22M500%20110%20v10%20M495%20115%20h10%22/%3E%0A%3Cpath%20d%3D%22M540%20300%20v10%20M535%20305%20h10%22/%3E%0A%3Cpath%20d%3D%22M70%20330%20v10%20M65%20335%20h10%22/%3E%0A%3Cpath%20d%3D%22M120%20470%20v10%20M115%20475%20h10%22/%3E%0A%3Cpath%20d%3D%22M500%20470%20v10%20M495%20475%20h10%22/%3E%0A%3C/g%3E%0A%0A%3Cpath%20d%3D%22M0%20640%20Q150%20565%20320%20620%20T600%20610%20L600%20850%20L0%20850%20Z%22%20fill%3D%22%236b3f20%22%20opacity%3D%220.55%22/%3E%0A%0A%3Cpath%20d%3D%22M0%20668%20L600%20668%20L600%20850%20L0%20850%20Z%22%20fill%3D%22url%28%23sol%29%22/%3E%0A%0A%3Cg%20fill%3D%22%23241205%22%3E%0A%3Ccircle%20cx%3D%22300%22%20cy%3D%22370%22%20r%3D%22100%22/%3E%0A%3Ccircle%20cx%3D%22244%22%20cy%3D%22425%22%20r%3D%2266%22/%3E%0A%3Ccircle%20cx%3D%22356%22%20cy%3D%22425%22%20r%3D%2266%22/%3E%0A%3Ccircle%20cx%3D%22278%22%20cy%3D%22335%22%20r%3D%2262%22/%3E%0A%3Ccircle%20cx%3D%22324%22%20cy%3D%22335%22%20r%3D%2262%22/%3E%0A%3C/g%3E%0A%0A%3Cpath%20d%3D%22M288%20470%20C286%20520%20284%20560%20281%20612%20C278%20646%20278%20664%20280%20678%20L320%20678%20C322%20664%20322%20646%20319%20612%20C316%20560%20314%20520%20312%20470%20Z%22%20fill%3D%22%23241205%22/%3E%0A%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23241205%22%20stroke-linecap%3D%22round%22%3E%0A%3Cpath%20d%3D%22M282%20676%20C266%20706%20240%20742%20210%20776%22%20stroke-width%3D%228%22/%3E%0A%3Cpath%20d%3D%22M286%20668%20C266%20696%20248%20716%20220%20736%22%20stroke-width%3D%225.5%22/%3E%0A%3Cpath%20d%3D%22M282%20678%20C258%20702%20240%20718%20222%20730%22%20stroke-width%3D%223.5%22/%3E%0A%3Cpath%20d%3D%22M318%20676%20C334%20706%20360%20742%20390%20776%22%20stroke-width%3D%228%22/%3E%0A%3Cpath%20d%3D%22M314%20668%20C334%20696%20352%20716%20380%20736%22%20stroke-width%3D%225.5%22/%3E%0A%3Cpath%20d%3D%22M318%20678%20C342%20702%20360%20718%20378%20730%22%20stroke-width%3D%223.5%22/%3E%0A%3Cpath%20d%3D%22M290%20678%20C286%20718%20290%20754%20296%20786%22%20stroke-width%3D%224%22/%3E%0A%3Cpath%20d%3D%22M310%20678%20C314%20718%20310%20754%20304%20786%22%20stroke-width%3D%224%22/%3E%0A%3C/g%3E%0A%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23a8c47c%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%3E%0A%3Cpath%20d%3D%22M96%20700%20C92%20676%2090%20658%2092%20640%22/%3E%0A%3C/g%3E%0A%3Cg%20fill%3D%22%23a8c47c%22%3E%0A%3Cellipse%20cx%3D%2294%22%20cy%3D%22638%22%20rx%3D%229%22%20ry%3D%225%22%20transform%3D%22rotate%28-35%2094%20638%29%22/%3E%0A%3Cellipse%20cx%3D%22104%22%20cy%3D%22650%22%20rx%3D%229%22%20ry%3D%225%22%20transform%3D%22rotate%2825%20104%20650%29%22/%3E%0A%3C/g%3E%0A%0A%3Crect%20width%3D%22600%22%20height%3D%22850%22%20fill%3D%22url%28%23scrim%29%22/%3E%0A%3C/svg%3E">
+    <div class="cover-text">
+      <p class="cover-author">Mouadh P. Chibani</p>
+      <h1 class="cover-title">La vie belle</h1>
+      <p class="cover-subtitle">Tome 1 — Les Racines de l’espoir</p>
+    </div>
+    <p class="cover-tagline">Un roman sur la lumière, même quand la vie semble l’avoir éteinte.</p>
   </section>
 
   <section class="imprint imprint-page">
-    <p><strong>La vie belle</strong> — Tome 1 — Les Racines de l’espoir</p>
+    <p class="ornament">☀</p>
+    <p class="imprint-title"><strong>La vie belle</strong> — Tome 1 — Les Racines de l’espoir</p>
+    <div class="imprint-rule"></div>
     <p>Texte corrigé et harmonisé. Version prête à publier.</p>
     <p>© 2026 Mouadh P. Chibani. Tous droits réservés.</p>
     <p>Ceci est une œuvre de fiction. Toute ressemblance avec des personnes réelles ou des situations existantes serait purement fortuite.</p>
@@ -93,46 +258,46 @@
   <section class="toc toc-page">
     <h2>Sommaire</h2>
     <ol>
-      <li><a href="#chapitre-1">1. L’été où tout semblait possible</a></li>
-<li><a href="#chapitre-2">2. Le retour</a></li>
-<li><a href="#chapitre-3">3. Les premiers signes</a></li>
-<li><a href="#chapitre-4">4. La fissure</a></li>
-<li><a href="#chapitre-5">5. Le jour où tout bascule</a></li>
-<li><a href="#chapitre-6">6. Le secret</a></li>
-<li><a href="#chapitre-7">7. La Source Vive</a></li>
-<li><a href="#chapitre-8">8. Sans savoir où aller</a></li>
-<li><a href="#chapitre-9">9. Le poids des apparences</a></li>
-<li><a href="#chapitre-10">10. Le meilleur investissement</a></li>
-<li><a href="#chapitre-11">11. La reine du marché</a></li>
-<li><a href="#chapitre-12">12. Un endroit où respirer</a></li>
-<li><a href="#chapitre-13">13. Perdre trois minutes</a></li>
-<li><a href="#chapitre-14">14. Le tour de Simon</a></li>
-<li><a href="#chapitre-15">15. Tenir encore un peu</a></li>
-<li><a href="#chapitre-16">16. Le masque</a></li>
-<li><a href="#chapitre-17">17. Une petite graine</a></li>
-<li><a href="#chapitre-18">18. Ceux qui étaient là avant moi</a></li>
-<li><a href="#chapitre-19">19. Ce que je ne contrôle plus</a></li>
-<li><a href="#chapitre-20">20. L’odeur du café</a></li>
-<li><a href="#chapitre-21">21. Avant que tout ne bascule</a></li>
-<li><a href="#chapitre-22">22. Le poids qu’on ne voit pas</a></li>
-<li><a href="#chapitre-23">23. Les couleurs qui ne mentent pas</a></li>
-<li><a href="#chapitre-24">24. Ce que le silence a changé</a></li>
-<li><a href="#chapitre-25">25. L’étau se resserre</a></li>
-<li><a href="#chapitre-26">26. La peur dans les yeux de mon frère de bureau</a></li>
-<li><a href="#chapitre-27">27. Le temps autrement</a></li>
-<li><a href="#chapitre-28">28. Avant que tout ne s’effondre</a></li>
-<li><a href="#chapitre-29">29. Une chambre pleine de vie</a></li>
-<li><a href="#chapitre-30">30. Les petites rébellions</a></li>
-<li><a href="#chapitre-31">31. Ce qu’il me reste</a></li>
-<li><a href="#chapitre-32">32. Ce que le miroir ne cache plus</a></li>
-<li><a href="#chapitre-33">33. Là où la vie continue</a></li>
-<li><a href="#chapitre-34">34. Ce qui reste</a></li>
-<li><a href="#chapitre-35">35. Ce qu’on transmet</a></li>
-<li><a href="#chapitre-36">36. Retraite avec le Cercle</a></li>
-<li><a href="#chapitre-37">37. La lumière revient</a></li>
-<li><a href="#chapitre-38">38. Ce qui reste à vivre</a></li>
-<li><a href="#chapitre-39">39. La vie devant moi</a></li>
-<li><a href="#epilogue">Épilogue</a></li>
+      <li><a href="#chapitre-1"><span class="toc-num">1</span>L’été où tout semblait possible</a></li>
+<li><a href="#chapitre-2"><span class="toc-num">2</span>Le retour</a></li>
+<li><a href="#chapitre-3"><span class="toc-num">3</span>Les premiers signes</a></li>
+<li><a href="#chapitre-4"><span class="toc-num">4</span>La fissure</a></li>
+<li><a href="#chapitre-5"><span class="toc-num">5</span>Le jour où tout bascule</a></li>
+<li><a href="#chapitre-6"><span class="toc-num">6</span>Le secret</a></li>
+<li><a href="#chapitre-7"><span class="toc-num">7</span>La Source Vive</a></li>
+<li><a href="#chapitre-8"><span class="toc-num">8</span>Sans savoir où aller</a></li>
+<li><a href="#chapitre-9"><span class="toc-num">9</span>Le poids des apparences</a></li>
+<li><a href="#chapitre-10"><span class="toc-num">10</span>Le meilleur investissement</a></li>
+<li><a href="#chapitre-11"><span class="toc-num">11</span>La reine du marché</a></li>
+<li><a href="#chapitre-12"><span class="toc-num">12</span>Un endroit où respirer</a></li>
+<li><a href="#chapitre-13"><span class="toc-num">13</span>Perdre trois minutes</a></li>
+<li><a href="#chapitre-14"><span class="toc-num">14</span>Le tour de Simon</a></li>
+<li><a href="#chapitre-15"><span class="toc-num">15</span>Tenir encore un peu</a></li>
+<li><a href="#chapitre-16"><span class="toc-num">16</span>Le masque</a></li>
+<li><a href="#chapitre-17"><span class="toc-num">17</span>Une petite graine</a></li>
+<li><a href="#chapitre-18"><span class="toc-num">18</span>Ceux qui étaient là avant moi</a></li>
+<li><a href="#chapitre-19"><span class="toc-num">19</span>Ce que je ne contrôle plus</a></li>
+<li><a href="#chapitre-20"><span class="toc-num">20</span>L’odeur du café</a></li>
+<li><a href="#chapitre-21"><span class="toc-num">21</span>Avant que tout ne bascule</a></li>
+<li><a href="#chapitre-22"><span class="toc-num">22</span>Le poids qu’on ne voit pas</a></li>
+<li><a href="#chapitre-23"><span class="toc-num">23</span>Les couleurs qui ne mentent pas</a></li>
+<li><a href="#chapitre-24"><span class="toc-num">24</span>Ce que le silence a changé</a></li>
+<li><a href="#chapitre-25"><span class="toc-num">25</span>L’étau se resserre</a></li>
+<li><a href="#chapitre-26"><span class="toc-num">26</span>La peur dans les yeux de mon frère de bureau</a></li>
+<li><a href="#chapitre-27"><span class="toc-num">27</span>Le temps autrement</a></li>
+<li><a href="#chapitre-28"><span class="toc-num">28</span>Avant que tout ne s’effondre</a></li>
+<li><a href="#chapitre-29"><span class="toc-num">29</span>Une chambre pleine de vie</a></li>
+<li><a href="#chapitre-30"><span class="toc-num">30</span>Les petites rébellions</a></li>
+<li><a href="#chapitre-31"><span class="toc-num">31</span>Ce qu’il me reste</a></li>
+<li><a href="#chapitre-32"><span class="toc-num">32</span>Ce que le miroir ne cache plus</a></li>
+<li><a href="#chapitre-33"><span class="toc-num">33</span>Là où la vie continue</a></li>
+<li><a href="#chapitre-34"><span class="toc-num">34</span>Ce qui reste</a></li>
+<li><a href="#chapitre-35"><span class="toc-num">35</span>Ce qu’on transmet</a></li>
+<li><a href="#chapitre-36"><span class="toc-num">36</span>Retraite avec le Cercle</a></li>
+<li><a href="#chapitre-37"><span class="toc-num">37</span>La lumière revient</a></li>
+<li><a href="#chapitre-38"><span class="toc-num">38</span>Ce qui reste à vivre</a></li>
+<li><a href="#chapitre-39"><span class="toc-num">39</span>La vie devant moi</a></li>
+<li><a href="#epilogue"><span class="toc-num"></span>Épilogue</a></li>
     </ol>
   </section>
 
@@ -225,7 +390,7 @@
 <p>La voix de Claire me ramène à la plage.</p>
 <p>— Oui.</p>
 <p>Je les rejoins.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Nous longeons la plage jusqu’au port.</p>
 <p>Le sable est devenu plus chaud sous nos pieds. Des enfants construisent un château trop grand pour survivre à la marée. Des pêcheurs démêlent leurs filets. Une vieille femme promène un petit chien qui semble décider lui-même de la direction à prendre.</p>
 <p>Claire s’arrête net devant une pâtisserie.</p>
@@ -300,7 +465,7 @@
 <p>Je les regarde et quelque chose se détend en moi.</p>
 <p>Peut-être que je n’ai rien à résoudre aujourd’hui.</p>
 <p>Peut-être que je peux simplement être là.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Le marché du village est déjà animé.</p>
 <p>Melons, pains encore chauds, épices qui embaument l’air entre les étals.</p>
 <p>Claire s’arrête devant presque chaque stand.</p>
@@ -348,7 +513,7 @@
 <p>Léa garde un petit sourire au coin des lèvres pendant tout le reste du chemin.</p>
 <p>Elle ne dit rien.</p>
 <p>Elle n’en a pas besoin.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>La terrasse du petit restaurant borde le port.</p>
 <p>C’est une de nos habitudes depuis plusieurs étés.</p>
 <p>Le serveur nous reconnaît de loin.</p>
@@ -382,7 +547,7 @@
 <p>Je souris.</p>
 <p>Je ne sais pas si je suis vraiment en train de retrouver quelqu’un.</p>
 <p>Peut-être que je découvre simplement une version de moi que j’avais laissée derrière.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>L’après-midi se déroule dans un désordre joyeux.</p>
 <p>Claire plonge dans la piscine avant tout le monde.</p>
 <p>Rose proteste.</p>
@@ -407,7 +572,7 @@
 <p>Je ne veux pas qu’elle s’inquiète.</p>
 <p>Pas aujourd’hui.</p>
 <p>Aujourd’hui, je vais bien.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>En fin d’après-midi, Rose nous emmène vers une petite crique qu’elle affectionne particulièrement.</p>
 <p>Des marches taillées dans la pierre descendent vers une langue de sable coincée entre deux falaises.</p>
 <p>L’eau est si transparente qu’on distingue chaque galet au fond.</p>
@@ -483,7 +648,7 @@
 <p>Léa s’allonge dans le sable à côté de nous.</p>
 <p>Le bonheur ne fait pas de bruit.</p>
 <p>Il s’assoit simplement près de vous et espère que vous le remarquerez.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Le ciel s’orange, puis se teinte de rose.</p>
 <p>— On ne peut pas rentrer sans voir le coucher du soleil, dit Claire.</p>
 <p>— Tu dis ça tous les soirs, sourit Rose.</p>
@@ -522,7 +687,7 @@
 <p>Les rires des enfants au loin.</p>
 <p>Je voudrais arrêter le temps.</p>
 <p>Quelques minutes seulement.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>La nuit tombe sur notre terrasse constellée de lampions.</p>
 <p>Claire arrive avec un plateau de glaces.</p>
 <p>— Attention ! Le dessert est servi.</p>
@@ -628,11 +793,11 @@
 <p>Et ce soir, cela me suffit.</p>
 <h1 class="chap-num" id="chapitre-2">CHAPITRE 2</h1>
 <h2 class="chap-title">Le retour</h2>
-<p>Trois semaines plus tard.</p>
+<p class="first"><span class="dropcap">T</span>rois semaines plus tard.</p>
 <p>Trois semaines ont passé depuis notre retour de la côte, trois semaines à ranger les valises, les cartes du restaurant du port et cette petite alerte au belvédère que j’ai préféré classer, elle aussi, dans un tiroir que je ne rouvre pas.</p>
 <p>Paris a repris ses droits.</p>
 <p>Et ce matin, dans mon lit, la lumière n’a plus rien de salé.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>La lumière du matin traverse les rideaux de lin et dessine des taches dorées sur le parquet. C’est un réveil doux. Trop doux. La fenêtre entrouverte laisse entrer l’air frais, et l’odeur des pancakes monte de la cuisine, mêlée au bruit des casseroles que Rose manie avec énergie, une vieille radio en fond.</p>
 <p>Un poids s’abat sur mes jambes. Un rire que je connais par cœur.</p>
 <p>— Elle dort encore ? Ce n’est pas possible, c’est le grand jour !</p>
@@ -649,7 +814,7 @@
 <p>— Bon, allez, bougez de là ! Si j’arrive en retard le premier jour, ma légende de fille parfaite en prendra un coup.</p>
 <p>Elles sortent en se chamaillant déjà pour la musique de la prochaine vidéo.</p>
 <p>Je reste seule, le sourire aux lèvres, le regard sur la tache de café.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Vingt minutes plus tard, la salle de bain est envahie de vapeur, l’air sent la pivoine et le savon propre. Je lisse mes cheveux avec une concentration presque excessive. Je suis toujours comme ça — exigeante, avec les autres parfois, mais surtout avec moi-même.</p>
 <p>Léa, appuyée contre l’encadrement de la porte, grignote une pomme.</p>
 <p>— Tu comptes les manger tout crus, non ?</p>
@@ -665,7 +830,7 @@
 <p>— Comme d’habitude, sourit Léa. Je ramène mes carnets de croquis.</p>
 <p>Elle pose sa main sur mon épaule. Une pression brève, solide.</p>
 <p>— Tu es prête, Emi. Va leur montrer.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je descends.</p>
 <p>L’odeur de cannelle, de beurre chaud et de café fort m’attrape dès la dernière marche. Rose est devant les fourneaux, calme malgré l’agitation.</p>
 <p>— Tes pancakes sont prêts. Claire m’a fait promettre de ne pas y toucher avant sa séance photo... mais j’en ai sauvé trois pour toi.</p>
@@ -679,7 +844,7 @@
 <p>On éclate tous de rire.</p>
 <p>Léa arrive, carnet sous le bras, vole une gorgée de mon café sans demander. Je les regarde tous, debout près du plan de travail.</p>
 <p>Je remplis mes poumons de ce brouhaha.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Claire attrape son téléphone.</p>
 <p>— Attendez ! Personne ne bouge !</p>
 <p>Elle balaie la table du regard avec l’attention d’un metteur en scène, déplace les pancakes, les fraises, une branche d’eucalyptus, incline le trépied.</p>
@@ -721,7 +886,7 @@
 <p>Je jette un coup d’œil à l’horloge.</p>
 <p>— Oh non, mon taxi !</p>
 <p>J’embrasse rapidement Rose sur la joue, ébouriffe les cheveux de Claire en passant, adresse un clin d’œil à Léa, et je quitte la maison avec leurs éclats de rire encore dans les oreilles.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Dans le taxi, le cuir du siège est tiède sous mes jambes. À travers la vitre, Paris s’éveille.</p>
 <p>À un feu rouge, mon regard croise celui d’une jeune femme sur le trottoir, un dossier serré contre sa poitrine.</p>
 <p>Je souris malgré moi.</p>
@@ -732,7 +897,7 @@
 <p>Son regard reste posé sur moi une seconde de trop, comme si elle pesait quelque chose d’invisible.</p>
 <p>— Il est fait pour celles qui ne comptent pas leurs heures, Alma.</p>
 <p>— Dans ce cas, il est entre de bonnes mains.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je pousse la porte de mon nouveau bureau.</p>
 <p>La lumière entre à flots par deux baies vitrées qui forment l’angle de la tour. Des roses pâles attendent sur le bureau. Ma couleur préférée.</p>
 <p>Je dépose mon sac, mon ordinateur, une petite photo encadrée : Thomas et moi sur une plage balayée par le vent.</p>
@@ -749,7 +914,7 @@
 <p>Il rit.</p>
 <p>— L’équipe t’attend en salle Orion pour le lancement de « Lumina ».</p>
 <p>— Alors ne les faisons pas attendre.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je pousse la porte.</p>
 <p>Une dizaine de personnes autour de la table ovale.</p>
 <p>— Bon... je suppose que je devrais faire un grand discours inspirant. Mauvaise nouvelle : je suis nulle pour ça.</p>
@@ -765,7 +930,7 @@
 <p>Alma, immobile, puis en mouvement.</p>
 <p>Son sourire est trop lisse pour être sincère.</p>
 <p>Elle tourne les talons.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Le soir, l’odeur du chocolat chaud flotte dans toute la maison.</p>
 <p>Rose tricote paisiblement dans son fauteuil, comme si cette journée avait été parfaitement ordinaire.</p>
 <p>— Elle est là ! s’exclame Léa. Alors, cette première journée ?</p>
@@ -779,7 +944,7 @@
 <p>Le sourire de Rose s’adoucit.</p>
 <p>— Eh bien... si raconter mes bêtises peut faire sourire quelqu’un, alors tant mieux.</p>
 <p>Les rires remplissent une nouvelle fois la maison.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>— Je vais monter, dis-je doucement.</p>
 <p>— Déjà ? demande Claire.</p>
 <p>— Demain, j’ai une réunion importante.</p>
@@ -798,7 +963,7 @@
 <p>Je ne réponds rien.</p>
 <p>Je pose mon front contre son épaule.</p>
 <p>— Je t’aime, maman.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je monte les escaliers avec un sourire aux lèvres.</p>
 <p>La maison se tait enfin.</p>
 <p>Je m’installe à mon petit secrétaire, je prends mon carnet noir.</p>
@@ -815,7 +980,7 @@
 <p>Une petite tache, sombre, au-dessus de la clavicule.</p>
 <p>Je ne me souviens d’aucun choc.</p>
 <p>J’éteins la lumière avant d’avoir eu le temps d’y penser vraiment.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je me glisse sous la couette, le carnet noir contre ma poitrine.</p>
 <p>Paris scintille derrière la vitre.</p>
 <p>Demain, je redeviens cette femme de fer que rien ne peut briser.</p>
@@ -824,11 +989,11 @@
 <p>Je ne réponds pas, encore une fois — et je m’endors sans savoir si c’est la fatigue de la journée qui m’emporte, ou quelque chose d’autre, plus sourd, que je ne suis pas encore prête à nommer.</p>
 <h1 class="chap-num" id="chapitre-3">CHAPITRE 3</h1>
 <h2 class="chap-title">Les premiers signes</h2>
-<p>La nuit n’existe pas vraiment pour moi.</p>
+<p class="first"><span class="dropcap">L</span>a nuit n’existe pas vraiment pour moi.</p>
 <p>Je ferme les yeux, mon corps s’abandonne quelques heures à l’obscurité, mais mon esprit reste éveillé. À chaque fois que je crois sombrer, la salle Orion revient — le grand écran, les visages tournés vers moi.</p>
 <p>Je devrais ressentir de la fierté.</p>
 <p>Alors pourquoi cette victoire a-t-elle le goût d’une bataille que je ne me souviens pas avoir gagnée ?</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Six heures douze.</p>
 <p>Le réveil n’a même pas sonné.</p>
 <p>— Allez... deuxième journée de directrice.</p>
@@ -844,7 +1009,7 @@
 <p>Instantanément, quelque chose se détend dans ma poitrine.</p>
 <p>Cette maison a ce pouvoir étrange : dès que j’en franchis les portes, les titres disparaissent.</p>
 <p>Ici, je redeviens simplement Émilie.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je descends les escaliers en souriant.</p>
 <p>Dans la cuisine, Claire est penchée sur son téléphone.</p>
 <p>— On dépasse les cinq mille abonnés, maman. Cinq mille, à cause de tes pancakes et de ta poignée de farine.</p>
@@ -874,7 +1039,7 @@
 <p>— Disons que... j’ai participé.</p>
 <p>— Elle les a mis dans le sachet, précise Léa.</p>
 <p>Je ris malgré moi.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Dehors, l’air sent la pluie tombée pendant la nuit.</p>
 <p>Je démarre, je laisse retomber ma tête contre l’appuie-tête, je ferme les yeux une seconde de trop avant de reprendre la route.</p>
 <p>Mon téléphone vibre.</p>
@@ -901,7 +1066,7 @@
 <p>Il n’insiste jamais — et je ne sais jamais si c’est de la pudeur ou de la lâcheté.</p>
 <p>— Je t’aime, tu sais.</p>
 <p>— Moi aussi.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Devant moi, le bâtiment du centre de don apparaît au bout de l’avenue.</p>
 <p>J’y viens depuis presque cinq ans, depuis la mort de mon père.</p>
 <p>Aujourd’hui, pourtant, je ralentis avant d’entrer, sans savoir pourquoi.</p>
@@ -930,18 +1095,18 @@
 <p>Combien de temps encore vais-je réussir à appeler ça de la fatigue ?</p>
 <h1 class="chap-num" id="chapitre-4">CHAPITRE 4</h1>
 <h2 class="chap-title">La fissure</h2>
-<p>L’avenue de l’Opéra se dresse devant moi.</p>
+<p class="first"><span class="dropcap">L</span>’avenue de l’Opéra se dresse devant moi.</p>
 <p>Je me gare, je coupe le contact, je reste là, une seconde de trop.</p>
 <p>La fiche de Sophie, froissée au fond de mon sac, semble irradier une chaleur toxique.</p>
 <p>Je refuse d’y toucher.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je franchis les portes de Vance &amp; Co.</p>
 <p>Une femme de ménage passe la serpillière en fredonnant, un léger sourire aux lèvres.</p>
 <p>Comment fait-elle pour sourire ainsi ?</p>
 <p>— Bonjour, Madame la Directrice. Félicitations pour hier.</p>
 <p>Le mot agit comme un narcotique.</p>
 <p>Dans l’ascenseur, mon reflet dans les parois chromées : le masque tient.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Alma m’attend au quatrième étage, sa tablette contre la poitrine.</p>
 <p>— Te voilà enfin, Émilie. J’allais envoyer une équipe de recherche.</p>
 <p>— Tu devrais économiser ton énergie pour tes dossiers, Alma.</p>
@@ -956,7 +1121,7 @@
 <p>J’écris :</p>
 <p>Alma sait. Maintenir la garde.</p>
 <p>Je le glisse dans le tiroir qui ferme à clé.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>En salle « Opéra », les Delcourt m’attendent.</p>
 <p>Le simple geste de m’asseoir provoque une douleur fulgurante dans le bas du dos.</p>
 <p>Je commence ma présentation.</p>
@@ -975,7 +1140,7 @@
 <p>— Vous êtes impressionnante, Émilie. Une force de la nature.</p>
 <p>Sa main est chaude et solide.</p>
 <p>La mienne, un morceau de glace morte.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Une fois les portes de l’ascenseur refermées, je m’appuie contre le mur, les poumons brûlants.</p>
 <p>Quelque chose, en moi, se referme dans le mauvais sens, tranquillement, sans bruit.</p>
 <p>Thomas m’attend en bas, adossé à sa voiture, impeccable dans un costume qui ne se froisse jamais.</p>
@@ -985,13 +1150,13 @@
 <p>Puis il se reprend, ajuste sa cravate, referme la portière.</p>
 <p>— Enfin. Repose-toi. Il y a le dîner avec les Delcourt vendredi, il faudra que tu sois resplendissante.</p>
 <p>Je ne sais jamais avec lui laquelle des deux phrases est la vraie.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Au restaurant, il parle de notre avenir, d’un appartement, de croisières en Grèce.</p>
 <p>— Tu ne manges rien ? demande-t-il.</p>
 <p>— Trop d’adrénaline.</p>
 <p>Il n’insiste pas.</p>
 <p>Je le vois qui hésite, la main suspendue au-dessus de la mienne, comme s’il voulait la prendre puis se ravisait — je ne saurai jamais ce qu’il aurait dit, parce que le PDG de Vance &amp; Co s’approche justement de notre table à cet instant, et Thomas se lève, tout sourire.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Le salon de réception de Vance &amp; Co est saturé de monde.</p>
 <p>Alma s’approche, glissant entre les invités.</p>
 <p>— Quel succès, Émilie. On dirait presque que tu es en train de l’éviter. Tu transpires. Pourtant, la climatisation est à fond.</p>
@@ -1002,7 +1167,7 @@
 <p>Simon rit trop fort, la cravate déjà de travers.</p>
 <p>Par la grande baie vitrée, Paris s’allume peu à peu, indifférente.</p>
 <p>Je regarde tout ça comme à travers une vitre — présente, et déjà un peu ailleurs.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Mon téléphone vibre dans ma poche.</p>
 <p>Une vibration longue, insistante.</p>
 <p>Je m’excuse auprès de personne en particulier, je m’esquive vers le couloir des archives.</p>
@@ -1017,7 +1182,7 @@
 <p>À travers la cloison, la fête continue, exactement comme avant : un rire de femme, un bouchon de champagne qui saute, des applaudissements pour on ne sait quel toast.</p>
 <p>Le monde n’a pas entendu ce que je viens d’entendre.</p>
 <p>Il continue, à quelques mètres de moi, sans savoir que le mien vient de s’arrêter.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je reste ainsi, je ne sais combien de temps.</p>
 <p>Assez longtemps pour que mes jambes se mettent à trembler sous moi.</p>
 <p>Assez peu pour que personne ne remarque mon absence.</p>
@@ -1028,7 +1193,7 @@
 <p>Je prends l’ascenseur de service pour ne croiser personne.</p>
 <p>Dehors, l’air me frappe avec une brutalité irréelle.</p>
 <p>— Hôpital Saint-Louis. Urgences. Vite, s’il vous plaît.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Dans le taxi, j’ouvre le carnet.</p>
 <p>Sur la page du matin, le mot « GAGNÉ ».</p>
 <p>Je le barre d’un geste sec.</p>
@@ -1041,7 +1206,7 @@
 <p>Je ne sais toujours pas ce qui m’attend de l’autre côté de cette porte vitrée — seulement que, pour la première fois de ma vie, je n’ai plus la force de choisir de ne pas y aller.</p>
 <h1 class="chap-num" id="chapitre-5">CHAPITRE 5</h1>
 <h2 class="chap-title">Le jour où tout bascule</h2>
-<p>Le taxi me dépose sous l’auvent en béton des urgences. Je reste immobile, les yeux fixés sur le compteur. Descendre, c’est admettre que je ne suis plus la Directrice. Ici, je ne suis qu’un corps parmi d’autres.</p>
+<p class="first"><span class="dropcap">L</span>e taxi me dépose sous l’auvent en béton des urgences. Je reste immobile, les yeux fixés sur le compteur. Descendre, c’est admettre que je ne suis plus la Directrice. Ici, je ne suis qu’un corps parmi d’autres.</p>
 <p>— On est arrivés. Ça va aller ?</p>
 <p>Je ne réponds pas. Mes talons s’enfoncent dans une grille d’évacuation. Je manque de tomber.</p>
 <p>À l’accueil, une secrétaire tape sur son clavier sans lever les yeux.</p>
@@ -1081,7 +1246,7 @@
 <p>Debout. Entière en apparence. Dedans, quelque chose vient de céder. Et pour la première fois de ma vie, j’ai décidé quelque chose sans en parler à personne — pas même à Léa, qui m’a appelée quatorze fois ce soir sans que je décroche une seule.</p>
 <h1 class="chap-num" id="chapitre-6">CHAPITRE 6</h1>
 <h2 class="chap-title">Le secret</h2>
-<p>Le taxi me dépose au pied de la maison de Rose. Je lève les yeux vers la fenêtre de la cuisine, cette lumière jaune qui m’a toujours rassurée. Ce soir, elle m’agresse. J’ai l’impression d’être une intruse portant une bombe à retardement sous le bras.</p>
+<p class="first"><span class="dropcap">L</span>e taxi me dépose au pied de la maison de Rose. Je lève les yeux vers la fenêtre de la cuisine, cette lumière jaune qui m’a toujours rassurée. Ce soir, elle m’agresse. J’ai l’impression d’être une intruse portant une bombe à retardement sous le bras.</p>
 <p>En montant l’escalier, mon sac — l’ordonnance, le flacon — pèse une tonne.</p>
 <p>Elles sont là. Toutes les trois. Rose, le visage marqué par l’attente ; Claire, les mains nerveuses sur un torchon ; et Léa, dont le regard a toujours été mon miroir le plus cruel.</p>
 <p>— Émilie ! Enfin !</p>
@@ -1116,7 +1281,7 @@
 <p>De l’autre côté du mur, dans le couloir, j’entends un plancher craquer, puis plus rien. Léa ne dort pas. Je le sais à ce silence trop attentif — le même que celui d’une personne qui a décidé de ne pas laisser passer une nuit de plus sans comprendre. Demain, je le sais déjà, elle reviendra à la charge. Et je ne sais toujours pas ce que je lui répondrai.</p>
 <h1 class="chap-num" id="chapitre-7">CHAPITRE 7</h1>
 <h2 class="chap-title">La Source Vive</h2>
-<p>Je gare ma voiture près de la place de la République. La place est noire de monde. Des stands en bois clair, des ballons rouges, une banderole blanche : Village de la Résilience.</p>
+<p class="first"><span class="dropcap">J</span>e gare ma voiture près de la place de la République. La place est noire de monde. Des stands en bois clair, des ballons rouges, une banderole blanche : Village de la Résilience.</p>
 <p>Hier encore, j’aurais trouvé ce déploiement indécent. Ce matin, mes barrières s’effondrent un peu. Je ne vois pas de la tristesse déguisée. Je vois des gens qui rient, qui semblent simplement vivre, sans effort.</p>
 <p>Un homme d’un certain âge, en équilibre précaire, s’écroule sur un tapis. Un éclat de rire général fuse. Loin d’être vexé, il rit plus fort que les autres et se relève en saluant la foule comme s’il venait de remporter une médaille olympique. J’ai envie de sourire, moi qui n’ai pas ri de si bon cœur depuis des jours.</p>
 <p>Une jeune femme au teint pâle me tend un flyer. Son sourire est si lumineux qu’il balaie la grisaille du ciel. Elle n’essaie pas de jouer un rôle. Elle ne s’épuise pas à paraître courageuse. Elle l’est, tout simplement.</p>
@@ -1150,7 +1315,7 @@
 <p>Dans ma poche, mes doigts caressent les bords granuleux de la carte de Monsieur Dalpond. Je ne sais pas encore ce que je vais faire de cette adresse. Mais pour la première fois depuis l’annonce, j’ai envie de la garder tout près de moi plutôt que de la ranger dans un tiroir avec le reste.</p>
 <h1 class="chap-num" id="chapitre-8">CHAPITRE 8</h1>
 <h2 class="chap-title">Sans savoir où aller</h2>
-<p>Quand je quitte la place de la République, la nuit tombe déjà. Je prends la ligne 11, presque mécaniquement. Assise sur le siège en skaï froid, je sens mon corps se relâcher d’un seul coup, comme si quelqu’un coupait les fils qui me tiennent debout depuis le matin.</p>
+<p class="first"><span class="dropcap">Q</span>uand je quitte la place de la République, la nuit tombe déjà. Je prends la ligne 11, presque mécaniquement. Assise sur le siège en skaï froid, je sens mon corps se relâcher d’un seul coup, comme si quelqu’un coupait les fils qui me tiennent debout depuis le matin.</p>
 <p>Je ferme les yeux. Juste une seconde, pensé-je.</p>
 <p>Quand je les rouvre, le wagon est vide. Terminus. Mon corps a débranché la prise sans me demander mon avis.</p>
 <p>En rentrant, l’odeur du ragoût de Rose me percute comme une gifle de tendresse.</p>
@@ -1204,7 +1369,7 @@
 <p>Mais ma voix tremble. Je m’assois sur le lit, la lumière encore allumée, et je repense à la phrase de Claire — tu peux juste partir sans savoir où on va — en me demandant si elle réalise seulement à quel point, en ce moment précis, elle a raison plus qu’elle ne le croit.</p>
 <h1 class="chap-num" id="chapitre-9">CHAPITRE 9</h1>
 <h2 class="chap-title">Le poids des apparences</h2>
-<p>Le taxi glisse sur les quais de Seine. Paris n’est plus qu’un décor de théâtre dont on aurait éteint les projecteurs un à un.</p>
+<p class="first"><span class="dropcap">L</span>e taxi glisse sur les quais de Seine. Paris n’est plus qu’un décor de théâtre dont on aurait éteint les projecteurs un à un.</p>
 <p>— Madame ? On est arrivés.</p>
 <p>La Madeleine se dresse, massive. Thomas est déjà là, installé à une table d’angle, le regard fixé sur son dossier. Son baiser est froid, administratif.</p>
 <p>— Tu es en retard. Quatre minutes.</p>
@@ -1254,7 +1419,7 @@
 <p>Plus tard, dans la cuisine silencieuse, Léa pose juste sa main sur mon épaule, une pression longue et chaude, avant de s’éloigner. En montant l’escalier, j’emporte avec moi cette certitude toute neuve : le bracelet de Thomas pèse encore un peu à mon poignet, mais ce n’est plus la seule chose que je porte ce soir. Il y a aussi cette phrase de Claire — tu peux juste partir sans savoir où on va — qui refuse de me lâcher, et cette question, plus discrète encore, qui commence à s’installer en moi sans que je sache si j’ai vraiment envie d’y répondre : pour qui, au juste, est-ce que je porte encore cette bague ?</p>
 <h1 class="chap-num" id="chapitre-10">CHAPITRE 10</h1>
 <h2 class="chap-title">Le meilleur investissement</h2>
-<p>Dans la voiture, Thomas ajuste le rétroviseur pour la troisième fois, sans qu’il ait besoin d’être ajusté.</p>
+<p class="first"><span class="dropcap">D</span>ans la voiture, Thomas ajuste le rétroviseur pour la troisième fois, sans qu’il ait besoin d’être ajusté.</p>
 <p>— Tu as pensé à prendre le foulard vert ? Celui que je t’ai offert.</p>
 <p>— Il est dans mon sac.</p>
 <p>— Bien. Ma mère aime bien quand tu le portes. Elle dit que ça fait « femme accomplie, pas seulement jolie ». C’est un compliment, dans sa bouche.</p>
@@ -1314,7 +1479,7 @@
 <p>La question reste suspendue entre nous, dans l’habitacle silencieux, et je n’ai pas de réponse à lui donner — parce que je me la pose, moi aussi, depuis des semaines, chaque matin, derrière un rideau de douche, en avalant un comprimé qu’il ne connaît pas.</p>
 <h1 class="chap-num" id="chapitre-11">CHAPITRE 11</h1>
 <h2 class="chap-title">La reine du marché</h2>
-<p>Le samedi matin, la cuisine sent le café et le carton d’emballage. Claire a étalé sur la table une pile de feuilles imprimées, des post-it de toutes les couleurs, et un plan du marché du quartier annoté au marqueur rouge comme s’il s’agissait d’une opération militaire.</p>
+<p class="first"><span class="dropcap">L</span>e samedi matin, la cuisine sent le café et le carton d’emballage. Claire a étalé sur la table une pile de feuilles imprimées, des post-it de toutes les couleurs, et un plan du marché du quartier annoté au marqueur rouge comme s’il s’agissait d’une opération militaire.</p>
 <p>— Maman, tu es prête ?</p>
 <p>— Prête pour quoi, exactement ? demande Rose depuis l’évier, les mains dans la vaisselle du petit-déjeuner.</p>
 <p>— Pour ton stand.</p>
@@ -1400,7 +1565,7 @@
 <p>Ce soir-là, en repensant à cette journée, je réalise que Rose vient, sans jamais y penser une seule seconde, de donner à des dizaines d’inconnus quelque chose que moi je peine encore à donner à mes propres proches : un peu de vérité, offerte sans calcul, sans stratégie, sans se demander ce que ça va lui coûter. Je me couche ce soir-là avec cette pensée qui ne me lâche pas — et une question, plus discrète, qui commence tout juste à se former : et si donner sans compter n’était pas une faiblesse, mais exactement ce qui me manque le plus, en ce moment, pour tenir debout ?</p>
 <h1 class="chap-num" id="chapitre-12">CHAPITRE 12</h1>
 <h2 class="chap-title">Un endroit où respirer</h2>
-<p>Deux jours plus tard, mes pas me ramènent d’eux-mêmes rue des Ursulines. L’enseigne grince doucement. La Source Vive. Une partie de moi veut faire demi-tour. L’autre est simplement fatiguée de lutter contre l’évidence. Je pousse la porte.</p>
+<p class="first"><span class="dropcap">D</span>eux jours plus tard, mes pas me ramènent d’eux-mêmes rue des Ursulines. L’enseigne grince doucement. La Source Vive. Une partie de moi veut faire demi-tour. L’autre est simplement fatiguée de lutter contre l’évidence. Je pousse la porte.</p>
 <p>Monsieur Dalpond travaille le dos tourné.</p>
 <p>— Vous pouvez avancer. On reconnaît ce pas hésitant, Émilie. Vous n’êtes pas la première à entrer ici comme ça.</p>
 <p>Mes défenses s’écroulent. Je m’assois sur un tabouret de bois brut.</p>
@@ -1463,7 +1628,7 @@
 <p>Quand elles repartent se coucher, l’appartement — la maison, notre maison — retrouve son calme. Je regarde mes ongles bleus, encore un peu collants, et je pense à Daniel, à ses mots sur l’hôte et l’invité malpoli, à Claire qui m’a presque percée à jour hier soir. Je prends mon carnet. Je reste longtemps devant la page blanche. Puis j’écris simplement : Ce soir, j’ai oublié pendant quelques heures que j’avais peur. Je regarde la phrase. Elle me semble minuscule. Mais c’est peut-être déjà un début — et je me demande, en refermant le carnet, combien de temps encore un début pourra suffire à tenir le reste à distance.</p>
 <h1 class="chap-num" id="chapitre-13">CHAPITRE 13</h1>
 <h2 class="chap-title">Perdre trois minutes</h2>
-<p>Huit heures moins dix. La tour est encore à moitié endormie. Je n’ai pas dormi trois heures d’affilée depuis le début de la semaine, mais le dossier Lumina, lui, ne le sait pas et ne veut pas le savoir.</p>
+<p class="first"><span class="dropcap">H</span>uit heures moins dix. La tour est encore à moitié endormie. Je n’ai pas dormi trois heures d’affilée depuis le début de la semaine, mais le dossier Lumina, lui, ne le sait pas et ne veut pas le savoir.</p>
 <p>Trois coups à la porte. Je n’ai même pas besoin de lever les yeux.</p>
 <p>— Simon, si tu m’apportes encore un café, je t’épouse.</p>
 <p>— Je préfère rester célibataire, mais j’ai deux gobelets, alors on va dire que c’est un compromis honorable.</p>
@@ -1517,7 +1682,7 @@
 <p>Je repose ma tasse, et pour la première fois depuis des semaines, je réalise que je viens de passer une journée entière sans mentir à personne. Ce n’est pas rien. C’est même, je m’en aperçois seulement maintenant, exactement ce qui me manquait.</p>
 <h1 class="chap-num" id="chapitre-14">CHAPITRE 14</h1>
 <h2 class="chap-title">Le tour de Simon</h2>
-<p>Le jeudi, Simon n’apporte pas de café.</p>
+<p class="first"><span class="dropcap">L</span>e jeudi, Simon n’apporte pas de café.</p>
 <p>Je m’en aperçois seulement en fin de matinée, quand je réalise que je n’ai pas entendu sa voix depuis l’ouverture des bureaux — lui qui, d’habitude, commente au moins trois blagues de comptable avant midi. Sa porte est fermée. Un détail minuscule, mais qui suffit à m’inquiéter : Simon ne ferme jamais sa porte.</p>
 <p>Je frappe deux coups, j’entre sans attendre de réponse.</p>
 <p>— Tu boudes ?</p>
@@ -1564,7 +1729,7 @@
 <p>Il se lève, ouvre enfin sa porte — grande ouverte, cette fois — et je le suis dans le couloir, avec cette pensée tranquille qui m’accompagne jusqu’à la machine à café : ce n’est pas rien, d’avoir pu, ne serait-ce qu’une heure, être celle qui écoute plutôt que celle qu’on ménage.</p>
 <h1 class="chap-num" id="chapitre-15">CHAPITRE 15</h1>
 <h2 class="chap-title">Tenir encore un peu</h2>
-<p>Le lundi matin s’impose. Simon est déjà là quand j’arrive, assis sur le bord de mon bureau, deux gobelets à la main.</p>
+<p class="first"><span class="dropcap">L</span>e lundi matin s’impose. Simon est déjà là quand j’arrive, assis sur le bord de mon bureau, deux gobelets à la main.</p>
 <p>— J’ai eu peur que tu arrives à l’heure, pour une fois.</p>
 <p>Vers dix heures, Simon s’arrête devant la machine à café, un croissant entier fourré dans la bouche, et lance à la cantonade :</p>
 <p>— Vous savez ce qu’a dit un comptable à un autre comptable au mariage de son cousin ? « Je peux t’inviter à danser ? »</p>
@@ -1795,7 +1960,7 @@
 <p>Pour aujourd’hui, c’est suffisant.</p>
 <h1 class="chap-num" id="chapitre-17">CHAPITRE 17</h1>
 <h2 class="chap-title">Une petite graine</h2>
-<p>Je sors de la tour.</p>
+<p class="first"><span class="dropcap">J</span>e sors de la tour.</p>
 <p>Le monde me semble trop grand. Trop bruyant.</p>
 <p>Mes talons claquent sur l’asphalte.</p>
 <p>Clic. Clac.</p>
@@ -1861,7 +2026,7 @@
 <p>Les autres parlent.</p>
 <p>Je les écoute.</p>
 <p>Et, sans vraiment savoir pourquoi, je reste jusqu’au bout.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Lorsque la séance se termine, chacun se lève doucement.</p>
 <p>Des chaises qu’on repousse.</p>
 <p>Des manteaux qu’on enfile.</p>
@@ -1927,7 +2092,7 @@
 <p>Daniel ne dit rien.</p>
 <p>Moi non plus.</p>
 <p>Je pousse le rideau.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Dehors, rue des Ursulines, le soir tombe déjà.</p>
 <p>Les vitrines commencent à s’allumer.</p>
 <p>Les passants avancent autour de moi sans savoir que je viens de recevoir quelque chose d’aussi minuscule.</p>
@@ -1955,7 +2120,7 @@
 <p>C’est déjà ça.</p>
 <h1 class="chap-num" id="chapitre-18">CHAPITRE 18</h1>
 <h2 class="chap-title">Ceux qui étaient là avant moi</h2>
-<p>Il pleut, ce mercredi-là.</p>
+<p class="first"><span class="dropcap">I</span>l pleut, ce mercredi-là.</p>
 <p>Une pluie fine et tenace qui transforme la vitrine de La Source Vive en un rideau flou. À l’intérieur, l’arrière-boutique sent le cèdre mouillé, la tisane et la laine humide.</p>
 <p>Je referme mon parapluie à l’entrée.</p>
 <p>— Tu es en retard, dit Sarah.</p>
@@ -2217,7 +2382,7 @@
 <p>Et, pour l’instant, cette pensée suffit.</p>
 <h1 class="chap-num" id="chapitre-19">CHAPITRE 19</h1>
 <h2 class="chap-title">Ce que je ne contrôle plus</h2>
-<p>Le séjour ne commence pas comme je l’avais imaginé.</p>
+<p class="first"><span class="dropcap">L</span>e séjour ne commence pas comme je l’avais imaginé.</p>
 <p>Je m’attendais à quelque chose de plus organisé. Des horaires affichés, des groupes constitués, des activités auxquelles il faudrait participer avec le sourire. J’avais même préparé, dans ma tête, quelques bonnes excuses pour m’éclipser si les conversations devenaient trop personnelles.</p>
 <p>À la place, Monsieur Dalpond nous donne simplement les clés des chambres.</p>
 <p>— Le déjeuner est à midi. Pour le reste, faites comme vous voulez.</p>
@@ -2407,7 +2572,7 @@
 <p>Demain attendra.</p>
 <h1 class="chap-num" id="chapitre-20">CHAPITRE 20</h1>
 <h2 class="chap-title">L’odeur du café</h2>
-<p>L’odeur du café emplit déjà la cuisine lorsque la sonnette retentit.</p>
+<p class="first"><span class="dropcap">L</span>’odeur du café emplit déjà la cuisine lorsque la sonnette retentit.</p>
 <p>Rose lève les yeux de son saladier, les mains couvertes de farine.</p>
 <p>— Ça, c’est Claire.</p>
 <p>Je souris.</p>
@@ -2458,7 +2623,7 @@
 <p>Simple.</p>
 <p>Sans arrière-pensée.</p>
 <p>Et je me rends compte que cela faisait longtemps.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Quelques minutes plus tard, nous sommes dans la voiture de Claire.</p>
 <p>La radio diffuse une vieille chanson que nous connaissons par cœur.</p>
 <p>Claire chante faux.</p>
@@ -2516,7 +2681,7 @@
 <p>Les terrasses débordent de monde. Des enfants courent derrière des pigeons. Un fleuriste installe des hortensias devant sa boutique.</p>
 <p>La vie poursuit son cours.</p>
 <p>Et, pendant quelques heures, j’ai envie de la suivre sans chercher à savoir ce qu’elle me réserve.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Nous entrons dans une première boutique.</p>
 <p>Puis une deuxième.</p>
 <p>Puis une troisième.</p>
@@ -2551,7 +2716,7 @@
 <p>— Parce que je t’aime.</p>
 <p>Elle éclate de rire.</p>
 <p>— C’est probablement la meilleure raison que tu pouvais trouver.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Dans une autre boutique, Claire attrape une veste en laine bleu nuit.</p>
 <p>Elle me la tend.</p>
 <p>— Essaie ça.</p>
@@ -2582,7 +2747,7 @@
 <p>— Je sais.</p>
 <p>Je souris.</p>
 <p>Et je la laisse payer.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Nous nous arrêtons dans un petit salon de thé niché entre deux boutiques.</p>
 <p>Deux parts de tarte au citron arrivent sur la table.</p>
 <p>Claire raconte la catastrophe de sa dernière tentative de macarons : un four mal réglé, une cuisine envahie de fumée et un voisin venu sonner à la porte en pensant à un incendie.</p>
@@ -2627,7 +2792,7 @@
 <p>— Absolument.</p>
 <p>— Traîtresse.</p>
 <p>Et nous repartons dans un fou rire.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>En sortant, je m’arrête devant la vitrine d’une librairie.</p>
 <p>— Encore ? soupire Claire.</p>
 <p>— Je regarde seulement.</p>
@@ -2656,7 +2821,7 @@
 <p>— Elle dit ça à chaque fois.</p>
 <p>Je souris.</p>
 <p>— Tant mieux.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Il fait presque nuit lorsque nous rentrons.</p>
 <p>L’odeur du dîner de Rose emplit toute la maison avant même que nous ayons franchi la porte.</p>
 <p>Claire pose les sacs dans l’entrée.</p>
@@ -2685,7 +2850,7 @@
 <p>Je les regarde.</p>
 <p>Et je me dis que la vie n’a pas besoin d’être parfaite pour être belle.</p>
 <p>Elle a seulement besoin de contenir encore quelques moments comme celui-ci.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Plus tard, dans ma chambre, je pose la veste sur le dossier d’une chaise.</p>
 <p>Mon téléphone est sur la table de nuit.</p>
 <p>L’écran s’allume.</p>
@@ -2712,7 +2877,7 @@
 <p>Et cette différence, aussi petite soit-elle, me fait sourire dans le noir.</p>
 <h1 class="chap-num" id="chapitre-21">CHAPITRE 21</h1>
 <h2 class="chap-title">Avant que tout ne bascule</h2>
-<p>Avant de rejoindre la maison de couture, je passe au bureau.</p>
+<p class="first"><span class="dropcap">A</span>vant de rejoindre la maison de couture, je passe au bureau.</p>
 <p>Une heure.</p>
 <p>Pas plus.</p>
 <p>J’ai trois documents à signer que Camille n’a pas voulu m’envoyer par mail. Je me suis promis de repartir avant que l’étage ne se remplisse.</p>
@@ -3069,7 +3234,7 @@
 <p>De l’autre côté du rideau.</p>
 <h1 class="chap-num" id="chapitre-22">CHAPITRE 22</h1>
 <h2 class="chap-title">Le poids qu’on ne voit pas</h2>
-<p>Le mercredi, Léa ne travaille ni pour une entreprise ni pour un client.</p>
+<p class="first"><span class="dropcap">L</span>e mercredi, Léa ne travaille ni pour une entreprise ni pour un client.</p>
 <p>Elle pousse la porte d’un bâtiment aux murs couverts de dessins d’enfants.</p>
 <p>Pas de tableaux remplis de chiffres. Pas de réunions. Pas de délais.</p>
 <p>Seulement une salle baignée de lumière.</p>
@@ -3824,7 +3989,7 @@
 <p>Un début.</p>
 <h1 class="chap-num" id="chapitre-23">CHAPITRE 23</h1>
 <h2 class="chap-title">Les couleurs qui ne mentent pas</h2>
-<p>Léa arrive chez moi un peu après vingt heures, encore imprégnée de l’odeur de gouache et de craie de sa journée, deux sacs en papier kraft dans une main, un carnet à spirale coincé sous l’autre bras — pas le mien, un autre, plus épais, aux coins écornés.</p>
+<p class="first"><span class="dropcap">L</span>éa arrive chez moi un peu après vingt heures, encore imprégnée de l’odeur de gouache et de craie de sa journée, deux sacs en papier kraft dans une main, un carnet à spirale coincé sous l’autre bras — pas le mien, un autre, plus épais, aux coins écornés.</p>
 <p>— Tu n’as pas cuisiné, dit-elle en refermant la porte du pied.</p>
 <p>— Tu fouilles dans mes poubelles maintenant ?</p>
 <p>— Pas encore. Mais j’ai vu ton frigo la dernière fois. Un pot de moutarde et un espoir.</p>
@@ -3987,7 +4152,7 @@
 <p>Et, pour la première fois depuis longtemps, je me demande si, quelque part, une couleur m’attend déjà.</p>
 <h1 class="chap-num" id="chapitre-24">CHAPITRE 24</h1>
 <h2 class="chap-title">Ce que le silence a changé</h2>
-<p>J’attends, recroquevillée contre le miroir, dans mon nid de soie froissée.</p>
+<p class="first"><span class="dropcap">J</span>’attends, recroquevillée contre le miroir, dans mon nid de soie froissée.</p>
 <p>J’attends une phrase.</p>
 <p>Une seule.</p>
 <p>Depuis quand ?</p>
@@ -4583,7 +4748,7 @@
 <p>J’ai simplement appris que je n’étais plus obligée d’avoir peur toute seule.</p>
 <h1 class="chap-num" id="chapitre-25">CHAPITRE 25</h1>
 <h2 class="chap-title">L’étau se resserre</h2>
-<p>Le réveil sonne bien avant l’aube.</p>
+<p class="first"><span class="dropcap">L</span>e réveil sonne bien avant l’aube.</p>
 <p>J’ouvre les yeux avec cette sensation désagréable de ne pas avoir vraiment dormi. La nuit s’est résumée à des fragments de sommeil, des rêves sans queue ni tête et des réveils en sursaut.</p>
 <p>Je reste allongée quelques secondes, les yeux fixés au plafond.</p>
 <p>La scène de la veille revient.</p>
@@ -4672,7 +4837,7 @@
 <p>Je me répète cette phrase depuis des semaines.</p>
 <p>Plus tard.</p>
 <p>Comme si plus tard était un endroit où je pouvais me cacher.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je quitte l’appartement sans réveiller Claire.</p>
 <p>Dehors, Paris s’éveille à peine.</p>
 <p>Les terrasses installent leurs premières chaises. Les voitures avancent lentement dans les rues encore humides. Des enfants courent derrière leurs parents.</p>
@@ -4932,7 +5097,7 @@
 <p>Ta démission.</p>
 <p>Je refuse.</p>
 <p>Mais je ne sais pas encore comment me battre.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je quitte Vance &amp; Co avant midi.</p>
 <p>Je n’explique rien.</p>
 <p>Je prends simplement mon sac et je pars.</p>
@@ -5092,7 +5257,7 @@
 <p>Je ne laisserai pas Alma décider à ma place.</p>
 <p>Je la relis.</p>
 <p>Puis je pose le crayon.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je quitte l’atelier en fin d’après-midi.</p>
 <p>L’air est froid.</p>
 <p>Je marche quelques minutes sans destination précise.</p>
@@ -5156,7 +5321,7 @@
 <p>J’avance vers lui.</p>
 <h1 class="chap-num" id="chapitre-26">CHAPITRE 26</h1>
 <h2 class="chap-title">La peur dans les yeux de mon frère de bureau</h2>
-<p>À dix-sept heures précises, les portes de l’ascenseur s’ouvrent dans un souffle léger.</p>
+<p class="first"><span class="dropcap">À</span> dix-sept heures précises, les portes de l’ascenseur s’ouvrent dans un souffle léger.</p>
 <p>Je reste immobile quelques secondes.</p>
 <p>Le blanc de mon tailleur se reflète dans les parois métalliques.</p>
 <p>Quelques heures plus tôt, en l’enfilant, j’ai compris quelque chose.</p>
@@ -5525,7 +5690,7 @@
 <p>Je ne viens pas de devenir invincible.</p>
 <p>Je viens simplement de choisir de ne plus laisser la peur décider à ma place.</p>
 <p>Et, pour aujourd’hui, c’est déjà beaucoup.</p>
-<div class="separator">✦</div>
+<div class="separator">☀</div>
 <p>Je sors du bâtiment et rejoins ma voiture.</p>
 <p>Le GPS m’annonce deux minutes de trajet lorsque je reconnais la petite rue pavée où Claire vient d’installer sa pâtisserie — après des années dans son premier local, elle a signé pour cette vitrine plus grande, et l’inauguration d’aujourd’hui en est la première page.</p>
 <p>Une guirlande de fanions colorés flotte au-dessus de la devanture.</p>
@@ -5686,7 +5851,7 @@
 <p>Et, cette fois, je ne suis plus obligée de faire semblant d’être seule.</p>
 <h1 class="chap-num" id="chapitre-27">CHAPITRE 27</h1>
 <h2 class="chap-title">Le temps autrement</h2>
-<p>Le lendemain, j’ai rendez-vous avec mon oncologue avant même d’aller au bureau.</p>
+<p class="first"><span class="dropcap">L</span>e lendemain, j’ai rendez-vous avec mon oncologue avant même d’aller au bureau.</p>
 <p>Dans la salle d’attente, je remarque quelque chose d’étrange : je n’ai pas ouvert mes mails.</p>
 <p>Mon téléphone est posé dans ma main, écran éteint. Je pourrais vérifier. Il suffirait d’un geste. Une seconde pour savoir si Alma a écrit, si Camille attend une validation, si quelqu’un a besoin de moi.</p>
 <p>Je ne le fais pas.</p>
@@ -5965,7 +6130,7 @@
 <p>Je prends simplement une autre gorgée de chocolat.</p>
 <h1 class="chap-num" id="chapitre-28">CHAPITRE 28</h1>
 <h2 class="chap-title">Avant que tout ne s’effondre</h2>
-<p>Le salon brille trop.</p>
+<p class="first"><span class="dropcap">L</span>e salon brille trop.</p>
 <p>Tout est trop net. Trop lisse. Trop parfait.</p>
 <p>Les bougies diffusent une lumière dorée qui glisse sur les verres, les couverts, les assiettes encore presque intactes. Les lys embaument la pièce d’un parfum lourd, sucré, qui me donne presque envie d’ouvrir une fenêtre.</p>
 <p>Le cristal tinte doucement.</p>
@@ -6282,7 +6447,7 @@
 <p>Et, pour l’instant, cela suffit.</p>
 <h1 class="chap-num" id="chapitre-29">CHAPITRE 29</h1>
 <h2 class="chap-title">Une chambre pleine de vie</h2>
-<p>Je n’avais jamais pensé qu’une chambre d’hôpital puisse changer d’atmosphère à ce point.</p>
+<p class="first"><span class="dropcap">J</span>e n’avais jamais pensé qu’une chambre d’hôpital puisse changer d’atmosphère à ce point.</p>
 <p>Quand le brancardier me ramène de mon examen, le fauteuil glisse presque sans bruit sur le linoléum. Je m’attendais au blanc sans âme, au silence stérile et à cette odeur d’iode qui colle aux draps.</p>
 <p>À la place, il y a de la vie.</p>
 <p>Pendant que je n’étais pas là, la pièce a été investie. Des plantes vertes occupent le rebord de la fenêtre. Une petite guirlande clignote au-dessus du lit, projetant une lumière douce sur le mur où sont punaisées des photos en désordre : nos rires au bord de la mer, un Noël un peu flou, des visages familiers. Mon plaid préféré est plié au pied du lit. Mon mug ébréché m’attend sur la table de nuit.</p>
@@ -6310,7 +6475,7 @@
 <p>Sur le moniteur, le bip régulier continue de scander les secondes. Mais ce soir, il est noyé sous le bruit des pas dans le couloir et le murmure chaleureux de ceux qui sont restés de l’autre côté de la porte.</p>
 <h1 class="chap-num" id="chapitre-30">CHAPITRE 30</h1>
 <h2 class="chap-title">Les petites rébellions</h2>
-<p>L’ascenseur de l’hôpital grince à chaque étage, comme s’il protestait contre l’idée même de monter jusqu’au quatrième.</p>
+<p class="first"><span class="dropcap">L</span>’ascenseur de l’hôpital grince à chaque étage, comme s’il protestait contre l’idée même de monter jusqu’au quatrième.</p>
 <p>Oncologie.</p>
 <p>Les portes s’ouvrent sur un couloir aux néons trop blancs, une odeur de détergent qui essaie sans grand succès de couvrir tout le reste.</p>
 <p>Je connais ce trajet par cœur, maintenant.</p>
@@ -6624,7 +6789,7 @@
 <p>Pour une fois, le silence ne me fait pas peur.</p>
 <h1 class="chap-num" id="chapitre-31">CHAPITRE 31</h1>
 <h2 class="chap-title">Ce qu’il me reste</h2>
-<p>J’ouvre les yeux avant même de comprendre où je suis.</p>
+<p class="first"><span class="dropcap">J</span>’ouvre les yeux avant même de comprendre où je suis.</p>
 <p>Ça devient presque une habitude, ce petit vertige du réveil, cette seconde de flottement avant que la mémoire ne me rattrape et me dise : hôpital, quatrième étage, tiens bon.</p>
 <p>La lumière du matin filtre entre les stores et dessine des bandes claires sur le sol, sur les draps, sur la perfusion suspendue à côté de moi. Dans le couloir, un chariot roule avec un grincement régulier. Une porte s’ouvre, une autre se referme. Quelqu’un parle doucement à quelques mètres de ma chambre. Une odeur de café flotte dans l’air, mais c’est un café d’hôpital : vaguement brûlé, vaguement triste.</p>
 <p>Et sous tout ça, discret mais bien réel, le parfum de cèdre de Daniel est encore là.</p>
@@ -6869,7 +7034,7 @@
 <p>Et, pour aujourd’hui, c’est assez.</p>
 <h1 class="chap-num" id="chapitre-32">CHAPITRE 32</h1>
 <h2 class="chap-title">Ce que le miroir ne cache plus</h2>
-<p>Je n’ai presque pas dormi.</p>
+<p class="first"><span class="dropcap">J</span>e n’ai presque pas dormi.</p>
 <p>Les heures ont défilé au rythme des pas dans le couloir, des portes qui s’ouvrent et se referment, des voix étouffées derrière les cloisons trop minces. Par moments, j’entendais une machine biper quelque part dans l’étage. Puis plus rien.</p>
 <p>La nuit a été longue.</p>
 <p>L’aube, encore davantage.</p>
@@ -7423,7 +7588,7 @@
 <p>Et, pour aujourd’hui, c’est suffisant.</p>
 <h1 class="chap-num" id="chapitre-33">CHAPITRE 33</h1>
 <h2 class="chap-title">Là où la vie continue</h2>
-<p>Claire n’avait demandé l’autorisation à personne.</p>
+<p class="first"><span class="dropcap">C</span>laire n’avait demandé l’autorisation à personne.</p>
 <p>Elle était arrivée dans ma chambre en milieu d’après-midi avec son éternel carnet sous le bras, deux cafés dans une main et cette expression particulière qui annonçait qu’une décision avait déjà été prise.</p>
 <p>— Ce soir, on monte sur le toit.</p>
 <p>Je relevai les yeux de mon livre.</p>
@@ -7709,7 +7874,7 @@
 <p>Et, pour ce soir, c’était largement suffisant.</p>
 <h1 class="chap-num" id="chapitre-34">CHAPITRE 34</h1>
 <h2 class="chap-title">Ce qui reste</h2>
-<p>Le lendemain, je me réveille avant Daniel — une première, vu ses talents de garde du corps somnolent.</p>
+<p class="first"><span class="dropcap">L</span>e lendemain, je me réveille avant Daniel — une première, vu ses talents de garde du corps somnolent.</p>
 <p>La chambre baigne dans une lumière douce, presque dorée. Le soleil s’est enfin invité derrière les grandes fenêtres de l’hôpital. Ça fait des semaines que je ne l’avais pas vraiment remarqué.</p>
 <p>Je porte machinalement une main à ma tête.</p>
 <p>Le geste me surprend encore.</p>
@@ -8035,7 +8200,7 @@
 <p>Et, pour aujourd’hui, c’est déjà beaucoup.</p>
 <h1 class="chap-num" id="chapitre-35">CHAPITRE 35</h1>
 <h2 class="chap-title">Ce qu’on transmet</h2>
-<p>Le lendemain matin, je descends et trouve Rose déjà debout dans la cuisine.</p>
+<p class="first"><span class="dropcap">L</span>e lendemain matin, je descends et trouve Rose déjà debout dans la cuisine.</p>
 <p>Elle porte son vieux tablier à petites fleurs bleues, celui que mon père appelait autrefois son « uniforme de bataille ». Il est presque aussi ancien que mes souvenirs d’enfance. Autour d’elle, c’est le désordre organisé que je reconnais immédiatement : un nuage de farine sur le plan de travail, trois bols empilés de travers, un couteau posé sur une planche en bois et, près de la fenêtre, les vieux carnets de recettes aux pages jaunies.</p>
 <p>Une odeur de beurre fondu flotte dans toute la maison.</p>
 <p>Je m’arrête sur le seuil.</p>
@@ -8378,7 +8543,7 @@
 <p>Et pour la première fois depuis longtemps, cela suffit.</p>
 <h1 class="chap-num" id="chapitre-36">CHAPITRE 36</h1>
 <h2 class="chap-title">Retraite avec le Cercle</h2>
-<p>Le minibus s’arrête au bord de la falaise.</p>
+<p class="first"><span class="dropcap">L</span>e minibus s’arrête au bord de la falaise.</p>
 <p>Personne ne parle.</p>
 <p>On entend seulement les portières qui s’ouvrent une à une, puis le vent qui s’engouffre aussitôt dans l’habitacle, comme s’il avait attendu notre arrivée pour reprendre possession des lieux.</p>
 <p>Je descends la première marche et reste immobile quelques secondes.</p>
@@ -8719,7 +8884,7 @@
 <p>Il ressemble simplement à une femme assise dans un minibus, les yeux fermés, qui accepte enfin de ne pas savoir exactement ce qui viendra demain.</p>
 <h1 class="chap-num" id="chapitre-37">CHAPITRE 37</h1>
 <h2 class="chap-title">La lumière revient</h2>
-<p>Pendant quelques secondes, je reste incapable de détourner les yeux.</p>
+<p class="first"><span class="dropcap">P</span>endant quelques secondes, je reste incapable de détourner les yeux.</p>
 <p>Je connais cette silhouette par cœur : la façon de retirer sa veste d’un geste lent, de sourire avant même de parler, de passer une main dans ses cheveux lorsqu’il cherche quelqu’un du regard.</p>
 <p>Mon corps le reconnaît avant mon esprit.</p>
 <p>Mon cœur, lui, fait exactement l’inverse.</p>
@@ -9087,7 +9252,7 @@
 <p>Et ce soir, cela me suffit.</p>
 <h1 class="chap-num" id="chapitre-38">CHAPITRE 38</h1>
 <h2 class="chap-title">Ce qui reste à vivre</h2>
-<p>Elle rentre chez elle.</p>
+<p class="first"><span class="dropcap">E</span>lle rentre chez elle.</p>
 <p>L’appartement l’accueille avec cette perfection qu’elle a mis quinze ans à construire.</p>
 <p>Le parquet est ciré. Les plaids sont pliés au carré. Les coussins du canapé sont parfaitement alignés. Sur la console, aucun courrier ne dépasse de la pile soigneusement organisée.</p>
 <p>Pas un objet ne semble avoir été posé là par hasard.</p>
@@ -9637,7 +9802,7 @@
 <p>Et, pour une fois, cela lui suffit.</p>
 <h1 class="chap-num" id="chapitre-39">CHAPITRE 39</h1>
 <h2 class="chap-title">La vie devant moi</h2>
-<p>Le café est chaud entre mes mains.</p>
+<p class="first"><span class="dropcap">L</span>e café est chaud entre mes mains.</p>
 <p>Je reste immobile quelques secondes, assise près de la fenêtre, comme si le moindre mouvement pouvait casser quelque chose de fragile en moi.</p>
 <p>Pourtant, il n’y a plus rien à protéger.</p>
 <p>Plus rien à retenir.</p>
@@ -10357,7 +10522,7 @@
 <p>j’ai envie de la suivre.</p>
 <p>FIN DU TOME 1</p>
 <h1 class="chap-num" id="epilogue">ÉPILOGUE</h1>
-<p>Quelques semaines plus tard, Claire me propose de l’accompagner à un séjour organisé par le Cercle du Mardi.</p>
+<p class="first"><span class="dropcap">Q</span>uelques semaines plus tard, Claire me propose de l’accompagner à un séjour organisé par le Cercle du Mardi.</p>
 <p>Quatre jours à la montagne.</p>
 <p>J’hésite.</p>
 <p>Pendant longtemps, j’ai refusé tout ce qui ressemblait de près ou de loin à un groupe de parole. J’avais peur que les histoires des autres réveillent les miennes. Peur de retrouver, dans leurs blessures, quelque chose que j’aurais préféré laisser dormir.</p>

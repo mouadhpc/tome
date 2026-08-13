@@ -308,17 +308,22 @@ COVER_CSS = """
 
 FRONT_CSS = """
   .imprint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: #5c4a36;
     font-size: .92rem;
-    line-height: 2;
-    margin: 0;
-    padding: 2.2rem 1rem;
+    line-height: 1.9;
+    min-height: calc(100vh - 45mm);
   }
-  .imprint .ornament { color: var(--gold); font-size: 1.1rem; margin-bottom: 1.6rem; }
+  .imprint .ornament { color: var(--gold); font-size: 1.1rem; margin: 0 0 1.8rem; }
   .imprint-page { break-after: page; }
-  .imprint-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
+  .imprint-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); margin: 0; }
   .imprint-rule { width: 4.5rem; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.1rem auto; }
+  .imprint-copy { margin: .4rem 0 0; }
+  .imprint-fiction { margin: 1.5rem 0 0; max-width: 34rem; font-size: .88rem; }
 
   .toc { margin: 0; padding: 1.5rem 1rem 3rem; }
   .toc h2 {
@@ -420,6 +425,7 @@ CHAP_CSS = """
 FRONT_PAGE_CSS = """
   @page { size: A4; margin: 24mm 21mm 21mm; }
   @page cover { margin: 0; }
+  body { padding: 0; max-width: none; }
 """
 
 BODY_PAGE_CSS = f"""
@@ -466,9 +472,8 @@ front_sections = f"""
     <p class="ornament">☀</p>
     <p class="imprint-title"><strong>{BOOK_TITLE}</strong> — {escape(BOOK_SUBTITLE)}</p>
     <div class="imprint-rule"></div>
-    <p>Texte corrigé et harmonisé. Version prête à publier.</p>
-    <p>© 2026 {escape(AUTHOR)}. Tous droits réservés.</p>
-    <p>Ceci est une œuvre de fiction. Toute ressemblance avec des personnes réelles ou des situations existantes serait purement fortuite.</p>
+    <p class="imprint-copy">© 2026 {escape(AUTHOR)}<br>Tous droits réservés.<br>Toute reproduction, même partielle, est interdite.</p>
+    <p class="imprint-fiction">Ceci est une œuvre de fiction. Toute ressemblance avec des personnes ou des situations réelles serait purement fortuite.</p>
   </section>
 
   <section class="toc toc-page">

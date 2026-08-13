@@ -198,6 +198,15 @@ Ces scènes comptent parmi les plus abouties du manuscrit : sobres, jamais compl
 | 12 | Ch.1, l.120 | Répétition | 🟢 | À votre discrétion | ⏸️ Laissé |
 | 13 | Ch.10, l.1146 | Vocabulaire (anglicisme) | 🟢 | À votre discrétion | ⏸️ Laissé |
 
+### 0.1 — Design et mise en page (HTML / PDF) — 13/08/2026
+
+| # | Correction | Détail | Statut |
+|---|---|---|---|
+| D1 | Refonte visuelle au thème du roman (aube, lumière, racines) | Couverture illustrée SVG (soleil levant, arbre aux racines profondes, pousse d'espoir), palette ambre/terre, typographie Vollkorn + EB Garamond, ornements soleil ☀, lettrines en début de chapitre, séparateurs de scène « ligne — ☀ — ligne », sommaire et folios dorés | ✅ Appliqué |
+| D2 | Structure du PDF | Liminaires non numérotés, corps numéroté à partir de 1, chapitres en page neuve — 496 pages au total | ✅ Appliqué |
+| D3 | Page d'emprunt | Contenu centré verticalement (supprime la grande marge blanche en bas) | ✅ Appliqué |
+| D4 | Texte de la page d'emprunt | Suppression de « Texte corrigé et harmonisé. Version prête à publier. » ; copyright reformulé (« Tous droits réservés. Toute reproduction, même partielle, est interdite. ») ; mention de fiction corrigée (« Toute ressemblance avec des personnes ou des situations réelles serait purement fortuite. ») | ✅ Appliqué |
+
 ---
 
 *Fin du rapport. Mise à jour du 13/08/2026 : les corrections #1 à #11 ont été appliquées au manuscrit (texte extrait et DOCX) ; les points #12 et #13 restent à la discrétion de l'auteur.*

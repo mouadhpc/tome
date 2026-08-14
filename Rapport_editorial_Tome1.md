@@ -209,4 +209,59 @@ Ces scènes comptent parmi les plus abouties du manuscrit : sobres, jamais compl
 
 ---
 
-*Fin du rapport. Mise à jour du 13/08/2026 : les corrections #1 à #11 ont été appliquées au manuscrit (texte extrait et DOCX) ; les points #12 et #13 restent à la discrétion de l'auteur.*
+## 8. Révision de la version corrigée de l'auteur — `Roman_tome_1_corrige.docx` (14/08/2026)
+
+### 8.0 — Contexte
+
+L'auteur a transmis sa version corrigée (`Roman_tome_1_corrige.docx`, 310 Ko) en réponse aux 13 points du rapport. Elle reprend les corrections #1, #4, #5, #6, #10 et #11, mais tranche différemment sur l'identité du mentor (#3) et les prénoms dupliqués (#8), et réécrit largement la séquence Ch.21-24 pour résoudre #2 à la racine. **Cette version fait désormais référence pour le texte du tome 1.**
+
+Mesures : 10 643 paragraphes non vides, **~77 880 mots** (+~2 400 par rapport à l'original, essentiellement l'expansion des Ch.22-24). Métadonnées DOCX : auteur **Anais REJEB**.
+
+### 8.1 — Bilan des 13 points dans la version corrigée
+
+| # | Point | Résolution dans la version corrigée | Statut |
+|---|---|---|---|
+| 1 | Résidu hors-fiction (Ch.28/29) | Supprimé | ✅ |
+| 2 | Chronologie Ch.21-24 | Refonte complète : Ch.21 se clôt sur Émilie laissant Léa voir ses hématomes ; Ch.22-23 développés (sans foulard sur le crâne ni perte de cheveux) ; Ch.24 = robe de mariée vandalisée au mascara → aveu verbal « J'ai une leucémie » → Léa offre un carnet bleu nuit + aquarelles, don unique et bien scénarisé (l.4533). Perte de cheveux toujours exclusive au Ch.32 | ✅ Résolu à la racine |
+| 3 | Identité du mentor | Le mentor est **Romain** (137 occurrences, cohérent sur tout le tome) ; Dalpond reste propriétaire de La Source Vive ; réplique Ch.30 cohérente (herboristerie distincte) | ✅ (choix différent du rapport : Romain, et non Daniel) |
+| 4 | Boutique de Claire | Ch.26 explicite le nouveau local : « après plusieurs années dans son ancien espace devenu trop petit, elle avait enfin pu s'installer ici » (l.5690) | ✅ |
+| 5/6 | Apostrophes / guillemets | Harmonisés — reste **1 apostrophe droite** (l.1038 « qu'on savait ») | ✅ / ℹ️ mineur |
+| 7 | « Chapitre 20 » | Toujours « Chapitre 20 — L'odeur du café » (l.2270), seul en-tête en minuscules | ❌ Non traité |
+| 8 | Trois « Sophie » | Sophie (infirmière) conservée ; éducatrice → **Camille** ; juriste → **Gaielle** (mention unique, l.4874) | ✅ mais ⚠️ nouvelle collision (voir §8.2.1) |
+| 9 | Format des sous-titres | Toujours hétérogène : titre accolé après « — » (Ch.10, 14, 19, 20, 21…) vs ligne dédiée (Ch.2, 3, 22…) ; MAJUSCULES (Ch.10, 11, 14, 18) vs casse normale | ❌ Non harmonisé |
+| 10 | Citation du Pr Tournier | Reformulée, grammaticalement correcte | ✅ |
+| 11 | Espaces manquantes | Corrigées (« Clic. » isolé, l.1663) | ✅ |
+| 12/13 | « inquiétude » / « rassurance » | Conservés (7× / 1×) — choix de l'auteur | ⏸️ Laissé volontairement |
+
+Aucun résidu des anciens noms : Daniel, Adrien, Sonia, Sandra absents de la version corrigée.
+
+### 8.2 — Nouveaux points signalés
+
+**8.2.1 — Collision de prénoms « Camille » (éducatrice vs collaboratrice Vance & Co)**
+
+- **Ch.22** (l.2988, 2993, 3098) : Camille, l'éducatrice du centre où travaille Léa.
+- **Ch.16, 20, 21, 25 (l.4890), 26, 27** : Camille, collaboratrice de Vance & Co (assistante de Monsieur Vance).
+
+La résolution du doublon « Sophie » (#8) a créé une nouvelle collision : deux personnages distincts portent le même prénom. **Recommandation** : renommer l'éducatrice (la Camille de Vance & Co a davantage d'occurrences et traverse plus de chapitres). Suggestions : Manon, Hélène ou Myriam.
+
+**8.2.2 — En-têtes de chapitres non harmonisés**
+
+Les points #7 et #9 restent en l'état. « Chapitre 20 » demeure le seul en-tête en minuscules, et le tome mélange toujours titres accolés après « — » et titres sur ligne dédiée, en MAJUSCULES ou en casse normale. Recommandation : choisir un format unique (cf. §2.2).
+
+**8.2.3 — Coquilles typographiques résiduelles**
+
+- l.1038 : apostrophe droite (« qu'on savait ») → apostrophe courbe.
+- Ch.34, l.7867 : « je me réveille avant Romain— une première » → espace avant le tiret (« Romain — une première »).
+- Ch.26, l.5691 : « Ce soir, elle inaugurait donc ce nouveau lieu » — imparfait isolé dans un récit au présent ; vérifier si « inaugurait » est volontaire ou doit devenir « inaugure ».
+
+**8.2.4 — Herboristerie de Romain (informations)**
+
+Romain mentionne une « boutique d'herboristerie rue des Ursulines » (Ch.30) sans qu'elle ne soit jamais montrée ; La Source Vive (boutique de jus de Dalpond) reste le lieu du Cercle. Cohérent tel quel ; une visite de l'herboristerie serait une piste d'enrichissement optionnelle (🟢).
+
+### 8.3 — Verdict
+
+La version corrigée résout l'intégralité des 13 points du rapport, dont #2 à la racine par une réécriture de qualité : la séquence Ch.21-24 gagne nettement en intensité (robe de mariée vandalisée, aveu, don du carnet bleu nuit, retrouvailles avec maman et Claire). Avant publication restent : la collision « Camille » (§8.2.1), l'harmonisation des en-têtes de chapitres (§8.2.2) et trois coquilles mineures (§8.2.3). Les points #12 et #13 sont confirmés comme des choix de l'auteur.
+
+---
+
+*Fin du rapport. 13/08/2026 : corrections #1 à #11 appliquées au manuscrit (texte extrait et DOCX), #12-13 laissés à la discrétion de l'auteur. 14/08/2026 : révision de la version corrigée de l'auteur (`Roman_tome_1_corrige.docx`) — voir §8 ; cette version fait référence, les publications HTML/PDF restent à régénérer sur cette base avec le nom de l'auteur Anais REJEB.*
